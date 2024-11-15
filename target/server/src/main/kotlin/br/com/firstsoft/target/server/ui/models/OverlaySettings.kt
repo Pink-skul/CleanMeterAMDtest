@@ -23,13 +23,22 @@ data class OverlaySettings(
     val downRate: Boolean = false,
     val netGraph: Boolean = false,
     val opacity: Float = 1f,
-    val cpuTempReadingId: Int = 0,
-    val cpuUsageReadingId: Int = 0,
-    val gpuTempReadingId: Int = 0,
-    val gpuUsageReadingId: Int = 0,
+
+    val cpuTempReadingId: CustomReading = CustomReading(),
+    val cpuUsageReadingId: CustomReading = CustomReading(),
+    val gpuTempReadingId: CustomReading = CustomReading(),
+    val gpuUsageReadingId: CustomReading = CustomReading(),
+    val vramUsageReadingId: CustomReading = CustomReading(),
+    val framerateReadingId: CustomReading = CustomReading(),
 ) {
     @Serializable
     enum class ProgressType {
         Circular, Bar, None
     }
+
+    @Serializable
+    data class CustomReading(
+        val readingId: Int = 0,
+        val sensorIndex: Int = 0,
+    )
 }

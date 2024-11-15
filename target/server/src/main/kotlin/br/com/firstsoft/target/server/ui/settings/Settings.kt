@@ -56,6 +56,7 @@ import br.com.firstsoft.target.server.ui.settings.tabs.StyleUi
 import br.com.firstsoft.core.os.hwinfo.HwInfoReader
 import br.com.firstsoft.core.common.hwinfo.cpuReadings
 import br.com.firstsoft.core.common.hwinfo.gpuReadings
+import br.com.firstsoft.core.common.hwinfo.presentMonReadings
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import br.com.firstsoft.target.server.ui.settings.tabs.AppSettingsUi
@@ -123,7 +124,8 @@ fun WindowScope.Settings(
                 0 -> OverlaySettingsUi(
                     overlaySettings, onOverlaySettings,
                     getCpuSensorReadings = { hwInfoData.value?.cpuReadings() ?: emptyList() },
-                    getGpuSensorReadings = { hwInfoData.value?.gpuReadings() ?: emptyList() }
+                    getGpuSensorReadings = { hwInfoData.value?.gpuReadings() ?: emptyList() },
+                    getPresentMonReadings = { hwInfoData.value?.presentMonReadings() ?: emptyList() },
                 )
                 1 -> StyleUi(overlaySettings, onOverlaySettings, getOverlayPosition)
                 2 -> AppSettingsUi()

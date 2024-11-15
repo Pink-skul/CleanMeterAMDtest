@@ -16,7 +16,7 @@ fun main() {
     setDefaultUncaughtExceptionHandler()
 
     val channel = Channel<Unit>()
-    registerKeyboardHook(channel)
+    //registerKeyboardHook(channel)
 
     HwInfoProcessManager.start()
 

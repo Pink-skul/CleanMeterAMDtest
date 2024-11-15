@@ -85,6 +85,7 @@ object HwInfoReader {
 
     private fun readSensors(pointer: Pointer, header: SensorSharedMem): List<SensorElement> {
         val longBuffer = ByteArray(8)
+        val intBuffer = ByteArray(4)
         return buildList {
             for (i in 0 until header.dwNumSensorElements) {
                 val buffer = pointer.getByteArray(
@@ -98,10 +99,12 @@ object HwInfoReader {
 
                 add(
                     SensorElement(
-                        dwSensorId = buffer.get(longBuffer).let {
+                        dwSensorId = buffer.get(intBuffer).let {
+                            intBuffer.copyInto(longBuffer)
                             ByteBuffer.wrap(longBuffer).order(ByteOrder.LITTLE_ENDIAN).long
                         },
-                        dwSensorInst = buffer.get(longBuffer).let {
+                        dwSensorInst = buffer.get(intBuffer).let {
+                            intBuffer.copyInto(longBuffer)
                             ByteBuffer.wrap(longBuffer).order(ByteOrder.LITTLE_ENDIAN).long
                         },
                         szSensorNameOrig = buffer.readString(SENSOR_STRING_LEN),
