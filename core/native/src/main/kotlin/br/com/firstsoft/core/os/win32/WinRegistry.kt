@@ -5,7 +5,6 @@ import java.io.InputStreamReader
 
 object WinRegistry {
     const val STARTUP_ITEMS_LOCATION = "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run"
-"
     const val REGISTRY_APP_NAME = "Launcher"
 
     fun read(location: String, key: String): List<String> {
